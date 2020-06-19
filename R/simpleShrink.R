@@ -29,9 +29,8 @@ simpleShrink <- function(unpooled_estimates,
   tau_i_mat   <- diag(unpooled_std_error^2)
       # convert vector unpooled estimates and std errors to matrices
   
-  pooled_var <- 1/sum(unpooled_std_error^(-2))
   theta_vec  <- matrix(rep(pooled_estimate, length.out = num_par))
-  sigma_mat  <- diag(rep(pooled_var, length.out = num_par))
+  sigma_mat  <- diag(rep(pooled_std_error^2, length.out = num_par))
       # convert pooled estimate and standard error to matrices
   
   gamma        <- solve(solve(tau_i_mat) + solve(sigma_mat))
